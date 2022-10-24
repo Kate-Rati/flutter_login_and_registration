@@ -1,5 +1,5 @@
+
 import 'package:flutter/material.dart';
-import 'package:flowerapp/login.dart';
 
 
 class MyRegister extends StatefulWidget {
@@ -26,7 +26,7 @@ class _MyRegisterState extends State<MyRegister> {
         body: Stack(
           children: [
             Container(
-              padding: const EdgeInsets.only(left: 35, top: 30),
+              padding: const EdgeInsets.only(left: 35),
               child: const Text(
                 'Create\nAccount',
                 style: TextStyle(color: Colors.white, fontSize: 33),
@@ -58,14 +58,14 @@ class _MyRegisterState extends State<MyRegister> {
                                     color: Colors.black,
                                   ),
                                 ),
-                                hintText: "Name",
+                                hintText: "Email",
                                 hintStyle: const TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
                           ),
                           const SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           TextField(
                             style: const TextStyle(color: Colors.white),

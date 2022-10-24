@@ -1,6 +1,7 @@
 import  'package:flutter/material.dart';
 import  'main.dart';
 import  'package:flowerapp/register.dart';
+import 'package:flowerapp/home.dart';
 
 
 class MyLogin extends StatefulWidget {
@@ -46,7 +47,7 @@ class _MyLoginState extends State<MyLogin> {
                             decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
                                 filled: true,
-                                hintText: "Name",
+                                hintText: "Email",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
@@ -85,7 +86,7 @@ class _MyLoginState extends State<MyLogin> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => const MyRegister()));
+                                              builder: (context) => const MyHome()));
                                     },
                                     icon: const Icon(
                                       Icons.arrow_forward,
@@ -117,9 +118,9 @@ class _MyLoginState extends State<MyLogin> {
                                   onPressed: () {},
                                   child: const Text(
                                     'Forgot Password',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       decoration: TextDecoration.underline,
-                                      color: const Color(0xff4c505b),
+                                      color: Color(0xff4c505b),
                                       fontSize: 18,
                                     ),
                                   )),
