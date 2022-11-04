@@ -1,8 +1,9 @@
+import 'package:flowerapp/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flowerapp/main.dart';
 
 class MyHome extends StatefulWidget {
-  const MyHome({Key? key}) : super(key: key);
+  final UserModel userModel;
+  const MyHome({Key? key, required this.userModel}) : super(key: key);
 
   @override
   _MyHomeState createState() => _MyHomeState();
@@ -13,16 +14,12 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text('User Details'),
-
+        title: const Text('User Details'),
         backgroundColor: Colors.blueGrey,
       ),
-
       body: Padding(
           padding: const EdgeInsets.all(70),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(140),
@@ -31,7 +28,7 @@ class _MyHomeState extends State<MyHome> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 10,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -40,18 +37,20 @@ class _MyHomeState extends State<MyHome> {
                 backgroundImage: AssetImage("assets/profile.png"),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
-              "My Name  ",
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+              "Email: " + widget.userModel.email!,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 18,
             ),
-            Text("My Profile"),
-            SizedBox(
+            Text("Nationality: " + widget.userModel.nationality!,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(
               height: 20,
             ),
           ])),

@@ -1,8 +1,9 @@
-import  'package:flutter/material.dart';
-import  'main.dart';
-import  'package:flowerapp/register.dart';
+import 'package:flowerapp/api/api_service.dart';
+import 'package:flowerapp/models/login_model.dart';
+import 'package:flutter/material.dart';
+import 'main.dart';
+import 'package:flowerapp/register.dart';
 import 'package:flowerapp/home.dart';
-
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -12,6 +13,11 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
+  ApiService apiService = ApiService();
+
+  TextEditingController emailCon = TextEditingController();
+  TextEditingController passCon = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,6 +49,7 @@ class _MyLoginState extends State<MyLogin> {
                       child: Column(
                         children: [
                           TextField(
+                            controller: emailCon,
                             style: const TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
@@ -56,6 +63,7 @@ class _MyLoginState extends State<MyLogin> {
                             height: 30,
                           ),
                           TextField(
+                            controller: passCon,
                             style: const TextStyle(),
                             obscureText: true,
                             decoration: InputDecoration(
@@ -83,10 +91,21 @@ class _MyLoginState extends State<MyLogin> {
                                 child: IconButton(
                                     color: Colors.white,
                                     onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => const MyHome()));
+                                      LoginRequestModel loginRequestModel =
+                                          LoginRequestModel();
+                                      loginRequestModel.email = emailCon.text;
+                                      loginRequestModel.password = passCon.text;
+                                      apiService
+                                          .login(loginRequestModel)
+                                          .then((value) {
+                                        debugPrint(value.toString());
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => MyHome(
+                                                      userModel: value,
+                                                    )));
+                                      });
                                     },
                                     icon: const Icon(
                                       Icons.arrow_forward,

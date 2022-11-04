@@ -8,27 +8,26 @@ class UserModel {
   UserModel({
     this.email,
     this.nationality,
-    this.id,
+    this.natId,
     this.password,
   });
 
-
-  String? id;
+  String? natId;
   String? nationality;
   String? email;
   String? password;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    nationality: json["nationality"],
-    email: json["email"],
-    id: json["ID"],
-    password: json["password"],
-  );
+        nationality: json["nationality"],
+        email: json["email"],
+        natId: json["natId"] ?? "num",
+        password: json["password"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "email": email,
-    "ID": id,
-    "nationality": nationality,
-    "password": password,
-  };
+        "email": email,
+        "natId": natId,
+        "nationality": nationality,
+        "password": password,
+      };
 }

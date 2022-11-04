@@ -1,6 +1,6 @@
-
+import 'package:flowerapp/api/api_service.dart';
+import 'package:flowerapp/models/user_model.dart';
 import 'package:flutter/material.dart';
-
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -10,6 +10,13 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
+  ApiService apiService = ApiService();
+  TextEditingController emailCon = TextEditingController();
+  TextEditingController nameCon = TextEditingController();
+  TextEditingController idCon = TextEditingController();
+  TextEditingController passCon = TextEditingController();
+  TextEditingController nationalityCon = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,6 +51,7 @@ class _MyRegisterState extends State<MyRegister> {
                       child: Column(
                         children: [
                           TextField(
+                            controller: emailCon,
                             style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
@@ -68,6 +76,7 @@ class _MyRegisterState extends State<MyRegister> {
                             height: 20,
                           ),
                           TextField(
+                            controller: idCon,
                             style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
@@ -92,6 +101,7 @@ class _MyRegisterState extends State<MyRegister> {
                             height: 30,
                           ),
                           TextField(
+                            controller: nationalityCon,
                             style: const TextStyle(color: Colors.white),
                             obscureText: false,
                             decoration: InputDecoration(
@@ -117,6 +127,7 @@ class _MyRegisterState extends State<MyRegister> {
                             height: 40,
                           ),
                           TextField(
+                            controller: passCon,
                             style: const TextStyle(color: Colors.white),
                             obscureText: true,
                             decoration: InputDecoration(
@@ -157,7 +168,17 @@ class _MyRegisterState extends State<MyRegister> {
                                 child: IconButton(
                                     color: Colors.white,
                                     onPressed: () {
-                                      Navigator.pushNamed(context, 'login');
+                                      UserModel userModel = UserModel();
+                                      userModel.email = emailCon.text;
+                                      userModel.natId = idCon.text;
+                                      userModel.nationality =
+                                          nationalityCon.text;
+                                      userModel.password = passCon.text;
+                                      apiService
+                                          .register(userModel)
+                                          .then((value) {
+                                        Navigator.pushNamed(context, 'login');
+                                      });
                                     },
                                     icon: const Icon(
                                       Icons.arrow_forward,
